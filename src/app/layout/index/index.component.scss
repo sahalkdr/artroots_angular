@@ -1,0 +1,100 @@
+ /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9dfbe;
+  padding: 10px 20px;
+  color: rgb(31, 28, 28);
+}
+
+header .logo img {
+  width: 60px;
+  height: auto;
+}
+
+header .search-bar {
+  display: flex;
+  align-items: center;
+}
+
+header .search-bar input {
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+header .search-bar button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #555;
+  color: rgb(34, 29, 29);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+header nav ul li a {
+  color: rgb(46, 41, 41);
+  text-decoration: none;
+}
+
+header .user-actions button {
+  background-color: #007bff;
+  color: rgb(41, 38, 38);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Adjust as needed for spacing */
+  gap: 20px; /* Adjust the gap between items as needed */
+}
+
+.category {
+  flex: 1 1 calc(33.333% - 40px); /* Adjust the percentage for the number of items per row and the gap */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+
+  img {
+    max-width: 40%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  h2 {
+    margin: 10px 0;
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1em;
+    color: #666;
+  }
+}

@@ -35,7 +35,5 @@ export class IndexComponent implements OnInit {
       });
   }
 
-  openLoginDialog(): void {
-    this.dialog.open(LoginComponent);
-  }
+  
 }

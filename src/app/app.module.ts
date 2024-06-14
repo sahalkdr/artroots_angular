@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { MatDialogModule } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +15,10 @@ import { SignupComponent } from './layout/signup/signup.component';
 import { IndexComponent } from './layout/index/index.component';
 import { ProductComponent} from './layout/product/product.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { ProductDetailComponent } from './layout/product-detail/product-detail.component';
+import { LightboxModule } from 'ngx-lightbox';
+import { CartComponent } from './layout/cart/cart.component';
+ 
 
 @NgModule({
   declarations: [
@@ -22,7 +27,10 @@ import { HeaderComponent } from './layout/header/header.component';
     SignupComponent,
     IndexComponent,
     ProductComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductDetailComponent,
+    CartComponent,
+     
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,8 @@ import { HeaderComponent } from './layout/header/header.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LightboxModule,RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

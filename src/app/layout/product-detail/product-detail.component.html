@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="product-detail-container" *ngIf="product">
+    <div class="image-gallery">
+        <img 
+          *ngFor="let image of _albums; let i = index"
+          class="thumbnail" 
+          [src]="image.thumb" 
+          alt="{{ product.product_name }}" 
+          (click)="open(i)">
+      </div>
+      
+  <div class="product-info">
+    <h2 class="product-title">{{ product.product_name }}</h2>
+    <p class="product-price">${{ product.price }}</p>
+    <p class="product-stock" *ngIf="product.qty > 0">In Stock</p>
+    <p class="product-description">{{ product.description }}</p>
+    <div class="product-qty">
+      <label for="qty">Qty:</label>
+      <input id="qty" type="number" [(ngModel)]="selectedQty" min="1" [max]="product.qty">
+    </div>
+    <button class="add-to-cart-btn" (click)="addToCart()">Add to Cart</button>
+  </div>
+</div>
+
+ 

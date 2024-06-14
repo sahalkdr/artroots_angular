@@ -1,0 +1,11 @@
+<app-header></app-header>
+<div class="products-container">
+  <div class="product" *ngFor="let product of products" (click)="navigateToProductDetail(product.product_id)">
+    <h2>{{ product.product_name }}</h2>
+    <img [src]="product.image_urls" alt="{{ product.product_name }}">
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Quantity: {{ product.qty }}</p>
+    <button>View Details</button>
+  </div>
+</div>

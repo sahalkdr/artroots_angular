@@ -12,8 +12,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './layout/login/login.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { IndexComponent } from './layout/index/index.component';
-import { ProductComponent} from './layout/product/product.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,6 @@ import { HeaderComponent } from './layout/header/header.component';
     LoginComponent,
     SignupComponent,
     IndexComponent,
-    ProductComponent,
     HeaderComponent
   ],
   imports: [
@@ -35,7 +34,9 @@ import { HeaderComponent } from './layout/header/header.component';
     MatButtonModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

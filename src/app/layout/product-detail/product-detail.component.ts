@@ -15,6 +15,8 @@ export class ProductDetailComponent implements OnInit {
   product: any;
   selectedQty: number = 1;
   _albums: Array<any> = [];
+  cartItems: any[] = []; // Array to hold cart items
+  userId: number | null = null; // User ID
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +32,12 @@ export class ProductDetailComponent implements OnInit {
       console.log('Product ID from route:', productId); // Debug log
       if (!isNaN(productId)) {
         this.fetchProduct(productId);
+        // Fetch cart items for the logged-in user
+        this.userId = this.userService.getUserId();
+        console.log('Current user ID:', this.userId); // Debug log
+        if (this.userId !== null) {
+          this.fetchCartItems(this.userId);
+        }
       } else {
         console.error('Invalid product ID from route');
       }
@@ -68,47 +76,93 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(): void {
-    const userId = this.userService.getUserId();
-    console.log('Current user ID:', userId); // Debug log
-    console.log('Product ID:', this.product.product_id); // Debug log
-    if (userId !== null) {
-      this.addProductToCart(userId, this.product.product_id, this.selectedQty);
-    } else {
-      const dialogRef = this.dialog.open(LoginComponent);
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result === 'loggedIn') {
-          const loggedInUserId = this.userService.getUserId();
-          console.log('Logged in user ID:', loggedInUserId); // Debug log
-          if (loggedInUserId !== null) {
-            this.addProductToCart(loggedInUserId, this.product.product_id, this.selectedQty);
-          } else {
-            console.error('User ID is null after logging in.');
-          }
+    console.log('Adding product to cart:', this.product); // Debug log
+    
+    if (this.userId !== null) {
+      if (Array.isArray(this.cartItems)) {
+        const existingCartItem = this.cartItems.find(item => item.product_id === this.product.product_id);
+        if (existingCartItem) {
+          this.updateCartItem(this.userId, existingCartItem.cart_id, existingCartItem.quantity + this.selectedQty);
+        } else {
+          this.addProductToCart(this.userId, this.product.product_id, this.selectedQty);
         }
-      });
+      } else {
+        console.error('cartItems is not an array or is undefined.');
+        // Optionally, fetch cart items again or show a message to the user
+      }
+    } else {
+      console.error('User ID is null.');
+      this.openLoginDialog();
     }
+  }
+
+  openLoginDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        // User has logged in successfully, fetch the user ID and cart items
+        this.userId = this.userService.getUserId();
+        if (this.userId !== null) {
+          this.fetchCartItems(this.userId);
+        }
+      }
+    });
   }
 
   addProductToCart(userId: number, productId: number, quantity: number): void {
     console.log('Parameters before adding to cart:', { userId, productId, quantity });
-    if (userId !== undefined && productId !== undefined) {
-      this.userService.addProductToCart(userId, productId, quantity)
-        .then(response => {
-          debugger;
-          if (response.success) {
-            window.alert('Product added to cart successfully!');
-            this.router.navigate(['/cart']); // Navigate to cart page
-          } else {
-            window.alert('Failed to add product to cart: ' + response.message);
-          }
-        })
-        .catch(error => {
-          console.error('Error adding product to cart:', error);
-          window.alert('Failed to add product to cart: ' + error.message);
-        });
-    } else {
-      console.error('userId or productId is undefined:', { userId, productId });
-    }
+    this.userService.addProductToCart(userId, productId, quantity)
+      .then(response => {
+        console.log('Add to cart API response:', response); // Debug log
+        if (response.success) {
+          window.alert('Product added to cart successfully!');
+          this.router.navigate(['/cart']); // Navigate to cart page
+        } else {
+          window.alert('Failed to add product to cart: ' + response.message);
+        }
+      })
+      .catch((error: any) => { // Explicitly typing error parameter
+        console.error('Error adding product to cart:', error);
+        window.alert('Failed to add product to cart: ' + error.message);
+      });
+  }
+
+  updateCartItem(userId: number, cartId: number, quantity: number): void {
+    console.log('Updating cart item:', { cartId, quantity });
+    this.userService.updateCartItem(userId, cartId, quantity)
+      .then(response => {
+        console.log('Update cart item API response:', response);
+        if (response && response.success) {
+          window.alert('Cart item updated successfully!');
+          // Optionally, refresh cart items list after updating
+        } else {
+          window.alert('Failed to update cart item: ' + response.message);
+        }
+      })
+      .catch((error: any) => {
+        console.error('Error updating cart item:', error);
+        window.alert('Failed to update cart item: ' + error.message);
+      });
+  }
+
+  fetchCartItems(userId: number): void {
+    this.userService.getCartItems(userId).then(
+      (response: any[]) => {
+        console.log('Cart items fetched:', response);
+        // Assuming response is an array of cart items
+        this.cartItems = response.map(item => ({
+          cart_id: item.cart_id,
+          product_id: item.product_id,
+          quantity: item.quantity
+        }));
+      },
+      (error: any) => {
+        console.error('Error fetching cart items:', error);
+        // Handle error appropriately
+      }
+    );
   }
 }

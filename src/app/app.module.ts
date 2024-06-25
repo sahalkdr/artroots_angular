@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ProductDetailComponent } from './layout/product-detail/product-detail.component';
 import { LightboxModule } from 'ngx-lightbox';
 import { CartComponent } from './layout/cart/cart.component';
+import { AdminComponent } from './layout/admin/admin.component';
  
 
 @NgModule({
@@ -30,6 +32,7 @@ import { CartComponent } from './layout/cart/cart.component';
     HeaderComponent,
     ProductDetailComponent,
     CartComponent,
+    AdminComponent,
      
   ],
   imports: [
@@ -39,6 +42,7 @@ import { CartComponent } from './layout/cart/cart.component';
     MatDialogModule,
     FormsModule,
     MatFormFieldModule,
+    MatToolbarModule,
     MatInputModule,
     MatButtonModule,
     AppRoutingModule,

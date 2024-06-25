@@ -7,6 +7,7 @@ interface CartItem {
   product_id: number;
   product_name: string;
   quantity: number;
+  cart_id: number; // Add cart_id to interface
 }
 
 @Component({
@@ -33,14 +34,14 @@ export class CartComponent implements OnInit {
     this.userService.getCartItems(userId).then(
       (response: any) => {
         console.log('Cart items fetched:', response); // Debug log
-        // Assuming response is directly the array of cart items
         if (Array.isArray(response)) {
           this.cartItems = response.map((item: any) => ({
             image_urls: item.image_urls,
             price: item.price,
             product_id: item.product_id,
             product_name: item.product_name,
-            quantity: item.quantity
+            quantity: item.quantity,
+            cart_id: item.cart_id // Assuming the cart_id is part of the response
           }));
         } else {
           console.error('Invalid response format:', response);
@@ -68,6 +69,28 @@ export class CartComponent implements OnInit {
 
   getTotal(): number {
     return this.getSubtotal(); // Assuming delivery is free
+  }
+
+  removeFromCart(item: CartItem): void {
+    if (this.userId !== null) {
+      this.userService.removeCartItem(this.userId, item.cart_id).then(
+        (response: any) => {
+          console.log('Item removed from cart:', response); // Debug log
+          if (response && response.success) {
+            this.cartItems = this.cartItems.filter(cartItem => cartItem.cart_id !== item.cart_id);
+            window.alert('Item removed from cart successfully!');
+          } else {
+            window.alert('Failed to remove item from cart: ' + response.message);
+          }
+        },
+        (error: any) => {
+          console.error('Error removing item from cart:', error);
+          window.alert('Failed to remove item from cart: ' + error.message);
+        }
+      );
+    } else {
+      console.error('User ID is null when trying to remove item from cart');
+    }
   }
 
   checkout(): void {

@@ -1,0 +1,41 @@
+<div *ngIf="cartItems.length > 0; else emptyCart">
+  <h2>Shopping Cart</h2>
+  <div class="cart-container">
+    <div class="cart-items">
+      <div class="cart-header">
+        <div class="header-image"></div>
+        <div class="header-name">Product Name</div>
+        <div class="header-price">Price</div>
+        <div class="header-quantity">Quantity</div>
+        <div class="header-remove">Remove</div> <!-- New column for remove button -->
+      </div>
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-image">
+          <img [src]="item.image_urls[0]" alt="Product Image">
+        </div>
+        <div class="item-details">
+          <div class="item-name">{{ item.product_name }}</div>
+          <div class="item-price">{{ item.price | currency }}</div>
+          <div class="item-quantity">
+            <button (click)="decreaseQuantity(item)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="increaseQuantity(item)">+</button>
+          </div>
+          <div class="item-remove">
+            <button (click)="removeFromCart(item)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-total">
+      <div>Subtotal: {{ getSubtotal() | currency }}</div>
+      <div>Delivery: Free</div>
+      <div>Total: {{ getTotal() | currency }}</div>
+      <button (click)="checkout()">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <div>Your cart is empty.</div>
+</ng-template>

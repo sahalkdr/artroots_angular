@@ -1,10 +1,11 @@
- <app-header> </app-header>
+<app-header></app-header>
 <body>
   <div class="categories-container">
-    <div class="category" *ngFor="let category of categories">
+    <div *ngFor="let category of categories" class="category" (click)="navigateToProductPage(category.category_id)">
       <h2>{{ category.category_name }}</h2>
       <img [src]="category.image" alt="{{ category.category_name }}">
       <p>{{ category.description }}</p>
+      <button>Go to Product Page</button>
     </div>
   </div>
 </body>

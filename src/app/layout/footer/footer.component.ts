@@ -6,12 +6,12 @@ import { UserService } from '../shared/services/user.service';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
   // imports: [MatIcon],
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./footer.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class FooterComponent implements OnInit {
   @Output() searchEvent = new EventEmitter<string>();
   searchQuery: string = '';
   currentUser: any = null;

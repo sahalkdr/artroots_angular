@@ -1,8 +1,9 @@
-<h2>Sign In</h2>
+
 <form (ngSubmit)="onSubmit(username.value, password.value)">
+  <h2>Sign In</h2>
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
-    <input matInput type="text" required #username>
+    <input matInput type="text" class="input" required #username>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>

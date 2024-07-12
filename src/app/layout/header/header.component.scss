@@ -6,14 +6,24 @@
     box-sizing: border-box;
   }
   
+  
+  app-header {
+    position: sticky;
+    top: 0; /* This sets the header to stick to the top of the viewport */
+    z-index: 100;
+    display: flex; /* Make the header a flex container */
+    align-items: center; /* Align header items vertically */
+    justify-content: space-between;
+  }
   /* Header Styles */
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e9dfbe;
+    background-color: transparent;
+    backdrop-filter: blur(25px);
     padding: 10px 20px;
-    color: rgb(31, 28, 28);
+    color: #2d2d2d;
   }
   
   header .logo img {
@@ -24,21 +34,35 @@
   header .search-bar {
     display: flex;
     align-items: center;
+    background-color: #fff;
+    width:50%;
+    border-radius: 8px;
+    position: relative;
+    justify-content: center;
+    
   }
   
   header .search-bar input {
-    padding: 5px;
+    padding: 10px 10px 10px 40px;
     border: none;
-    border-radius: 3px;
-    margin-right: 5px;
+    width:100%;
+    right: 20px;
+    background-color: #f5f3f3;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 8px;
+    object-fit: fill;
+    // margin-right: 5px;
   }
+
   
-  header .search-bar button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #555;
-    color: rgb(34, 29, 29);
-    border-radius: 3px;
+  
+  header .search-bar mat-icon{
+    position: absolute;  /* Position the icon absolutely */
+    left: 0px;  /* Adjust left padding for icon placement */
+    top: 50%;  /* Vertical centering */
+    transform: translateY(-50%); /* Center the icon vertically */
+    font-size: 25px;  /* Adjust icon font size */
+    color: #727171;  
     cursor: pointer;
   }
   
@@ -51,14 +75,25 @@
   }
   
   header nav ul li a {
-    color: rgb(46, 41, 41);
+    color: #2d2d2d;
+    display: flex;
     text-decoration: none;
+  }
+  header a{
+    align-items: center;
+    color: #2d2d2d;
+    text-decoration: none;
+    display: flex;
+    // position: fixed;
+    
   }
   
   header .user-actions button {
-    background-color: #007bff;
-    color: rgb(41, 38, 38);
+    background-color: #2d2d2d;
+    color: rgb(255, 255, 255);
     border: none;
+    bottom: 15%;
+    margin-left: auto;
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;

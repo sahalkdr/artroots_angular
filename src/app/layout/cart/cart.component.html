@@ -37,5 +37,10 @@
 </div>
 
 <ng-template #emptyCart>
-  <div>Your cart is empty.</div>
+  <app-header></app-header>
+  <div class="empty-cart">
+    <!-- <mat-icon>remove_shopping_cart</mat-icon> -->
+    <h2>Your cart is Empty</h2>
+    <a routerLink="/index"><button>Start Shopping</button></a>
+  </div>
 </ng-template>

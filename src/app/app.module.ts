@@ -14,16 +14,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './layout/login/login.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { IndexComponent } from './layout/index/index.component';
+import { ProductComponent} from './layout/product/product.component';
 import { HeaderComponent } from './layout/header/header.component';
-<<<<<<< HEAD
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-=======
+import { FooterComponent } from './layout/footer/footer.component';
 import { ProductDetailComponent } from './layout/product-detail/product-detail.component';
 import { LightboxModule } from 'ngx-lightbox';
 import { CartComponent } from './layout/cart/cart.component';
-import { AdminComponent } from './layout/admin/admin.component';
+import { MatIconModule } from '@angular/material/icon';
+import { NgxScrollTopModule } from 'ngx-scrolltop';
+// import { AdminComponent } from './layout/admin/admin.component';
  
->>>>>>> c200fd21f9bf6ac0269de17c635b52f673f73140
 
 @NgModule({
   declarations: [
@@ -31,16 +31,14 @@ import { AdminComponent } from './layout/admin/admin.component';
     LoginComponent,
     SignupComponent,
     IndexComponent,
-<<<<<<< HEAD
-    HeaderComponent
-=======
     ProductComponent,
     HeaderComponent,
+    FooterComponent,
     ProductDetailComponent,
     CartComponent,
-    AdminComponent,
+    
+    // AdminComponent,
      
->>>>>>> c200fd21f9bf6ac0269de17c635b52f673f73140
   ],
   imports: [
     BrowserModule,
@@ -52,12 +50,11 @@ import { AdminComponent } from './layout/admin/admin.component';
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     AppRoutingModule,
-    LightboxModule,RouterModule
+    LightboxModule,RouterModule, NgxScrollTopModule
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }

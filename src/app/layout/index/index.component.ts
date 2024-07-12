@@ -15,7 +15,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCategories();
   }
-
+  
   fetchCategories(): void {
     const page = 1; // Example page number
     const itemsPerPage = 10; // Example items per page
@@ -36,7 +36,17 @@ export class IndexComponent implements OnInit {
     );
   }
   
-  
+//   isMenuScrolled = false;
+//   isSidebarShowing = false;
+
+//   @HostListener('window:scroll', ['$event'])
+//   scrollCheck() {
+//     this.isMenuScrolled = window.scrollY > 100;
+//     console.log(this.isMenuScrolled);
+//   }
+
+//   openSideBar() {
+//     this.isSidebarShowing = true;
 
   navigateToProductPage(categoryId: number): void {
     console.log('Attempting to navigate with category ID:', categoryId); // Debug log
@@ -51,4 +61,9 @@ export class IndexComponent implements OnInit {
     });
   }
   
-}  
+// }  
+
+// function navigateToProductPage(categoryId: any, number: any) {
+//   throw new Error('Function not implemented.');
+// 
+}

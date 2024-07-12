@@ -39,13 +39,18 @@ h2 {
     width: 100%;
     padding: 10px;
     font-size: 16px;
+    
   }
 
+  button:hover{
+    background-color: #2d2d2d;
+    color: #fff;
+  }
   p {
     text-align: center;
     margin-top: 20px;
     a {
-      color: $accent-color;
+      color: #626262;
       text-decoration: none;
       &:hover {
         text-decoration: underline;

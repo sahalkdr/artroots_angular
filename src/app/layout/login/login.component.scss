@@ -8,6 +8,8 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+
+
 mat-dialog-content {
   background: #fff;
   padding: 30px 40px;
@@ -20,7 +22,7 @@ mat-dialog-content {
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
   color: #333;
   font-size: 1.5em;
 }
@@ -32,6 +34,7 @@ mat-form-field {
   max-width: 100%;
   box-sizing: border-box;
 }
+
 
 button {
   align-items: center;
@@ -45,7 +48,8 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #2d2d2d;
+  color: #fff;
 }
 
 p {
@@ -55,7 +59,7 @@ p {
 }
 
 a {
-  color: #007bff;
+  color: #2d2d2d;
   text-decoration: none;
 }
 

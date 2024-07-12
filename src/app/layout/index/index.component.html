@@ -1,11 +1,32 @@
 <app-header></app-header>
 <body>
   <div class="categories-container">
-    <div *ngFor="let category of categories" class="category" (click)="navigateToProductPage(category.category_id)">
-      <h2>{{ category.category_name }}</h2>
+    <div *ngFor="let category of categories" class="category" (click)="navigateToProductPage(category.category_id)">     
       <img [src]="category.image" alt="{{ category.category_name }}">
-      <p>{{ category.description }}</p>
-      <button>Go to Product Page</button>
+      <h2>{{ category.category_name }}</h2>   
     </div>
   </div>
+
+  <div class="popular-container">
+    <h3>Popular Items</h3> 
+    <div class="op"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
+      <img [src]="category.image" alt="{{ category.category_name }}">
+      <h2>{{ category.category_name }}</h2>   
+    </div>
+  </div>
+  </div>
+
+  <div class="popular-container">
+    <h3>Best Items</h3> 
+    <div class="best"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
+      <img [src]="category.image" alt="{{ category.category_name }}">
+      <h2>{{ category.category_name }}</h2>   
+    </div>
+  </div>
+  </div>
+  <!-- <button>
+    <mat-icon>arrow_drop_up</mat-icon></button>
+
+     -->
+  <app-footer></app-footer>
 </body>

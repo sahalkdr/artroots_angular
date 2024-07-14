@@ -1,26 +1,36 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 <header>
+
   <div class="logo">
     <img src="assets/logo.JPG" width="60" height="auto">
   </div>
+  <a routerLink="/index"><mat-icon>list</mat-icon>Categories</a>
   <div class="search-bar">
-    <input type="text" placeholder="Search for anything" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
-    <button (click)="onSearch()">🔍</button>
+    
+      <input type="search" placeholder="Search for anything" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+      <a routerLink="onSearch()">
+        <mat-icon>search</mat-icon></a>
+    
   </div>
+  
   <nav>
+    
     <ul>
-      <li><a routerLink="/index">Categories</a></li>
-      <li><a routerLink="/about">About</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/wishlist">Wishlist</a></li>
+      <div class="user-actions">
+        <ng-container *ngIf="currentUser">
+          <span>Welcome, {{ currentUser.username }}</span>
+          <button mat-button (click)="logout()">Logout</button>
+        </ng-container>
+        <ng-container *ngIf="!currentUser">
+          <button mat-button (click)="openLoginDialog()">Sign In</button>
+        </ng-container>
+      </div>
+      <!-- <li><a routerLink="/index"><mat-icon>list</mat-icon>Categories</a></li> -->
+      <!-- <li><a routerLink="/index">Categories</a></li> -->
+      <li><a routerLink="/cart"><mat-icon>shopping_cart</mat-icon></a></li>
+      <li><a routerLink="/wishlist"><mat-icon>favorite_border</mat-icon></a></li>
     </ul>
   </nav>
-  <div class="user-actions">
-    <ng-container *ngIf="currentUser">
-      <span>Welcome, {{ currentUser.username }}</span>
-      <button mat-button (click)="logout()">Logout</button>
-    </ng-container>
-    <ng-container *ngIf="!currentUser">
-      <button mat-button (click)="openLoginDialog()">Sign In</button>
-    </ng-container>
-  </div>
+  
 </header>

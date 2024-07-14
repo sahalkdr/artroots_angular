@@ -1,14 +1,18 @@
  /* Center the modal content horizontally and vertically */
 :host {
+  width: 100%;
   justify-content: center;
+  padding: 30px 40px;
   align-items: center;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+
+
 mat-dialog-content {
   background: #fff;
-  padding: 20px;
+  padding: 30px 40px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 400px;
@@ -18,20 +22,22 @@ mat-dialog-content {
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
   color: #333;
   font-size: 1.5em;
 }
 
 mat-form-field {
-  width: 70%;
-  margin-bottom: 20px;
+  width: 100%;
+  padding: 20px 40px; 
   display: center;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
+
 button {
-  width: 100%;
-  background-color: #007bff;
+  align-items: center;
   color: white;
   border: none;
   padding: 10px;
@@ -42,7 +48,8 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #2d2d2d;
+  color: #fff;
 }
 
 p {
@@ -52,7 +59,7 @@ p {
 }
 
 a {
-  color: #007bff;
+  color: #2d2d2d;
   text-decoration: none;
 }
 

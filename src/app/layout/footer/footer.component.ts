@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import { Component, EventEmitter, OnInit, Output, } from '@angular/core';
->>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
@@ -10,12 +6,13 @@ import { UserService } from '../shared/services/user.service';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
   // imports: [MatIcon],
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./footer.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class FooterComponent implements OnInit {
+  @Output() searchEvent = new EventEmitter<string>();
   searchQuery: string = '';
   currentUser: any = null;
   
@@ -23,7 +20,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private userService: UserService
+    private userService: UserService // Corrected userService naming convention
   ) {}
 
   openLoginDialog(): void {
@@ -31,7 +28,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.userService.setSearchQuery(this.searchQuery);
+    if (this.searchQuery.trim()) {
+      this.searchEvent.emit(this.searchQuery);
+    }
   }
 
   ngOnInit() {
@@ -42,7 +41,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    this.currentUser = null;
+    this.currentUser = null; // Clear current user immediately
+
+    // Open login dialog after logout
     this.openLoginDialog();
+   // Navigate to login page after logout
   }
 }

@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
       this.onSearch();
     });
   }
-
+  
   fetchCategories(): void {
     const page = 1;
     const itemsPerPage = 10;
@@ -40,6 +40,7 @@ export class IndexComponent implements OnInit {
       }
     );
   }
+<<<<<<< HEAD
 
   onSearch(): void {
     if (this.searchQuery.trim() === '') {
@@ -51,6 +52,20 @@ export class IndexComponent implements OnInit {
       );
     }
   }
+=======
+  
+//   isMenuScrolled = false;
+//   isSidebarShowing = false;
+
+//   @HostListener('window:scroll', ['$event'])
+//   scrollCheck() {
+//     this.isMenuScrolled = window.scrollY > 100;
+//     console.log(this.isMenuScrolled);
+//   }
+
+//   openSideBar() {
+//     this.isSidebarShowing = true;
+>>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
 
   navigateToProductPage(categoryId: number): void {
     if (categoryId === undefined || categoryId === null) {
@@ -61,4 +76,13 @@ export class IndexComponent implements OnInit {
       console.error('Navigation error:', error);
     });
   }
+<<<<<<< HEAD
+=======
+  
+// }  
+
+// function navigateToProductPage(categoryId: any, number: any) {
+//   throw new Error('Function not implemented.');
+// 
+>>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
 }

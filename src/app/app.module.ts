@@ -16,10 +16,13 @@ import { SignupComponent } from './layout/signup/signup.component';
 import { IndexComponent } from './layout/index/index.component';
 import { ProductComponent} from './layout/product/product.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 import { ProductDetailComponent } from './layout/product-detail/product-detail.component';
 import { LightboxModule } from 'ngx-lightbox';
 import { CartComponent } from './layout/cart/cart.component';
-import { AdminComponent } from './layout/admin/admin.component';
+import { MatIconModule } from '@angular/material/icon';
+import { NgxScrollTopModule } from 'ngx-scrolltop';
+// import { AdminComponent } from './layout/admin/admin.component';
  
  
 
@@ -31,10 +34,16 @@ import { AdminComponent } from './layout/admin/admin.component';
     IndexComponent,
     ProductComponent,
     HeaderComponent,
+    FooterComponent,
     ProductDetailComponent,
     CartComponent,
+<<<<<<< HEAD
     AdminComponent
    
+=======
+    
+    // AdminComponent,
+>>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
      
   ],
   imports: [
@@ -47,10 +56,11 @@ import { AdminComponent } from './layout/admin/admin.component';
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     AppRoutingModule,
-    LightboxModule,RouterModule
+    LightboxModule,RouterModule, NgxScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }

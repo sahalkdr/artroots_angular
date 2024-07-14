@@ -21,6 +21,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { CartComponent } from './layout/cart/cart.component';
 import { AdminComponent } from './layout/admin/admin.component';
  
+ 
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdminComponent } from './layout/admin/admin.component';
     HeaderComponent,
     ProductDetailComponent,
     CartComponent,
-    AdminComponent,
+    AdminComponent
+   
      
   ],
   imports: [

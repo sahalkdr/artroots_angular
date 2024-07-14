@@ -1,5 +1,3 @@
-
-
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -45,16 +43,15 @@ export class ApiService {
       }
 
       if (options.data) {
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(options.data));
+        if (options.data instanceof FormData) {
+          xhr.send(options.data);
+        } else {
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify(options.data));
+        }
       } else {
         xhr.send();
       }
     });
   }
 }
-
-
-
-
-

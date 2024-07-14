@@ -1,38 +1,51 @@
 import { Component } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.scss'
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  category = {
-    category_name: '',
-    description: ''
+  product: any = {
+    product_name: '',
+    description: '',
+    price: '',
+    qty: '',
+    categories: ''
   };
   selectedFile: File | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private userService: UserService) {}
 
-  onFileChange(event: any) {
-    this.selectedFile = event.target.files[0];
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
   }
 
   onSubmit() {
     const formData = new FormData();
-    formData.append('category_name', this.category.category_name);
-    formData.append('description', this.category.description);
+    formData.append('product_name', this.product.product_name);
+    formData.append('description', this.product.description);
+    formData.append('price', this.product.price);
+    formData.append('qty', this.product.qty);
+    formData.append('categories', JSON.stringify(this.product.categories.split(',').map((id: string) => id.trim())));
+
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
 
-    this.http.post('http://your-api-endpoint/addCategoryImage.php', formData)
-      .subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.error(error);
-      });
+    from(this.userService.addProduct(formData)).subscribe(
+      (response: any) => {
+        console.log('Product added successfully:', response);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error adding product:', error);
+      }
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/services/user.service'; 
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-index',
@@ -9,23 +9,28 @@ import { UserService } from '../shared/services/user.service';
 })
 export class IndexComponent implements OnInit {
   categories: any[] = [];
+  filteredCategories: any[] = [];
+  searchQuery: string = '';
 
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchCategories();
+    this.userService.searchQuery$.subscribe(query => {
+      this.searchQuery = query;
+      this.onSearch();
+    });
   }
 
   fetchCategories(): void {
-    const page = 1; // Example page number
-    const itemsPerPage = 10; // Example items per page
-  
+    const page = 1;
+    const itemsPerPage = 10;
+
     this.userService.getCategories(page, itemsPerPage).then(
       (response: any) => {
-        console.log('Categories fetched:', response); // Debug log
         if (response && Array.isArray(response)) {
           this.categories = response.filter((category: any) => category.category_id !== undefined && category.category_id !== null);
-          console.log('Filtered categories:', this.categories); // Debug log
+          this.filteredCategories = this.categories; // Initially show all categories
         } else {
           console.error('Failed to fetch categories:', response);
         }
@@ -35,20 +40,25 @@ export class IndexComponent implements OnInit {
       }
     );
   }
-  
-  
+
+  onSearch(): void {
+    if (this.searchQuery.trim() === '') {
+      this.filteredCategories = this.categories;
+    } else {
+      this.filteredCategories = this.categories.filter(category =>
+        category.category_name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        category.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+  }
 
   navigateToProductPage(categoryId: number): void {
-    console.log('Attempting to navigate with category ID:', categoryId); // Debug log
     if (categoryId === undefined || categoryId === null) {
       console.error('Invalid category ID:', categoryId);
       return;
     }
-  
-    console.log('Navigating to product page with category ID:', categoryId);
     this.router.navigate(['/product', categoryId]).catch(error => {
       console.error('Navigation error:', error);
     });
   }
-  
-}  
+}

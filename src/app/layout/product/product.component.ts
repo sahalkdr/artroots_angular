@@ -1,7 +1,5 @@
- // product.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
 @Component({
@@ -11,17 +9,25 @@ import { UserService } from '../shared/services/user.service';
 })
 export class ProductComponent implements OnInit {
   products: any[] = [];
+  filteredProducts: any[] = []; // Initialize with all products
   page: number = 1;
   itemsPerPage: number = 10;
   categoryId: number | null = null;
+  searchQuery: string = ''; // Track search query locally
 
-  constructor(private userService: UserService, private route: ActivatedRoute,private router:Router) {}
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     // Get the categoryId from the route parameters
     this.categoryId = Number(this.route.snapshot.paramMap.get('categoryId'));
     console.log('Loaded with category ID:', this.categoryId); // Debug log
     this.loadProducts();
+
+    // Subscribe to search query changes
+    this.userService.searchQuery$.subscribe(query => {
+      this.searchQuery = query.trim().toLowerCase(); // Update local search query
+      this.filterProducts(); // Filter products based on current search query
+    });
   }
 
   async loadProducts(): Promise<void> {
@@ -30,6 +36,7 @@ export class ProductComponent implements OnInit {
       console.log('Product API Response:', data); // Debug log
       if (Array.isArray(data)) {
         this.products = data;
+        this.filteredProducts = this.products; // Initially show all products
       } else {
         console.error('Unexpected data format:', data);
       }
@@ -39,12 +46,23 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  filterProducts(): void {
+    if (this.searchQuery === '') {
+      this.filteredProducts = this.products; // Show all products when search query is empty
+    } else {
+      this.filteredProducts = this.products.filter(product =>
+        product.product_name.toLowerCase().includes(this.searchQuery) ||
+        product.description.toLowerCase().includes(this.searchQuery)
+      );
+    }
+  }
+
   onPageChange(newPage: number): void {
     this.page = newPage;
     this.loadProducts();
   }
+
   navigateToProductDetail(productId: number): void {
     this.router.navigate(['/product-detail', productId]);
   }
-   
 }

@@ -9,6 +9,7 @@ import { ProductDetailComponent } from './layout/product-detail/product-detail.c
 import { CartComponent } from './layout/cart/cart.component';
  import { AdminComponent } from './layout/admin/admin.component';
 
+
 import { Component } from '@angular/core';
  
 const routes: Routes = [

@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   private currentUserSubject = new BehaviorSubject<any>(null);
   currentUser$ = this.currentUserSubject.asObservable();
+  private searchQuerySubject = new BehaviorSubject<string>('');
+  searchQuery$ = this.searchQuerySubject.asObservable();
 
   constructor(private apiService: ApiService) {
     const storedUser = localStorage.getItem('currentUser');
@@ -52,12 +54,13 @@ export class UserService {
   }
 
   async addNewCategory(categoryData: { category_name: string; image: string; description: string }): Promise<any> {
-    const response = await this.apiService.httpRequest({
+    return this.apiService.httpRequest({
       method: 'POST',
       url: 'http://localhost/artroots/addnewcategory.php',
       data: categoryData
     });
   }
+
   getCategories(page: number, itemsPerPage: number): Promise<any> {
     return this.apiService.httpRequest({
       method: 'POST',
@@ -98,22 +101,38 @@ export class UserService {
       data: { user_id: userId }
     });
   }
+
   updateCartItem(userId: number, cartId: number, quantity: number): Promise<any> {
     console.log('Updating cart item with parameters:', { userId, cartId, quantity }); // Debug log
     return this.apiService.httpRequest({
-        method: 'POST',
-        url: 'http://localhost/artroots/updatecartitemquantity.php',
-        data: { user_id: userId, cart_id: cartId, quantity: quantity }
+      method: 'POST',
+      url: 'http://localhost/artroots/updatecartitemquantity.php',
+      data: { user_id: userId, cart_id: cartId, quantity: quantity }
     });
-}
+  }
 
-removeCartItem(userId: number, cartId: number): Promise<any> {
+  removeCartItem(userId: number, cartId: number): Promise<any> {
     console.log('Removing cart item with parameters:', { userId, cartId }); // Debug log
     return this.apiService.httpRequest({
-        method: 'POST',
-        url: 'http://localhost/artroots/removecartitem.php',
-        data: { user_id: userId, cart_id: cartId }
+      method: 'POST',
+      url: 'http://localhost/artroots/removecartitem.php',
+      data: { user_id: userId, cart_id: cartId }
     });
+  }
+
+  setSearchQuery(query: string): void {
+    this.searchQuerySubject.next(query);
+  }
+
+  getSearchQuery(): string {
+    return this.searchQuerySubject.value;
+  }
+  async addProduct(productData: FormData): Promise<any> {
+    return this.apiService.httpRequest({
+      method: 'POST',
+      url: 'http://localhost/artroots/addproduct.php',
+      data: productData
+    });
+  }
 }
 
-}

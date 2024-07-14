@@ -1,6 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service'; 
+
+// import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+// @Directive({
+//   selector: '[appScrollButtons]'
+// })
+// export class ScrollButtonsDirective {
+//   @Input() scrollContainer: ElementRef | null = null;
+
+//   constructor(private el: ElementRef) { }
+
+//   @HostListener('click', ['$event'])
+//   onClick(event: any) {
+//     const buttonType = event.target.dataset.scroll;
+//     const container = this.scrollContainer || this.el.nativeElement.parentElement;
+
+//     if (!container || !buttonType) {
+//       return;
+//     }
+
+//     // Rest of the code remains the same...
+//   }
+// }
 
 @Component({
   selector: 'app-index',
@@ -36,17 +59,13 @@ export class IndexComponent implements OnInit {
     );
   }
   
-//   isMenuScrolled = false;
-//   isSidebarShowing = false;
 
-//   @HostListener('window:scroll', ['$event'])
-//   scrollCheck() {
-//     this.isMenuScrolled = window.scrollY > 100;
-//     console.log(this.isMenuScrolled);
-//   }
+// scrollRight(popularGrid: ElementRef) {
+//   popularGrid.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+// }
 
-//   openSideBar() {
-//     this.isSidebarShowing = true;
+
+
 
   navigateToProductPage(categoryId: number): void {
     console.log('Attempting to navigate with category ID:', categoryId); // Debug log

@@ -8,25 +8,43 @@
   </div>
 
   <div class="popular-container">
+    <!-- <button class="scrolll" (click)="scrollRight(popularGrid)">
+      <mat-icon>arrow_forward_ios</mat-icon></button>   -->
     <h3>Popular Items</h3> 
-    <div class="op"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
-      <img [src]="category.image" alt="{{ category.category_name }}">
-      <h2>{{ category.category_name }}</h2>   
+    <div class="popular-grid">
+      <div class="op"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
+        <img [src]="category.image" alt="{{ category.category_name }}">
+        <h2>{{ category.category_name }}</h2> 
+        
+      </div>
+    </div>
     </div>
   </div>
-  </div>
 
-  <div class="popular-container">
+  <div class="best-container">
     <h3>Best Items</h3> 
-    <div class="best"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
-      <img [src]="category.image" alt="{{ category.category_name }}">
+    <div class="best-grid">
+      <div class="best"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
+        <img [src]="category.image" alt="{{ category.category_name }}">
       <h2>{{ category.category_name }}</h2>   
     </div>
   </div>
   </div>
-  <!-- <button>
-    <mat-icon>arrow_drop_up</mat-icon></button>
+  </div>
+  
 
-     -->
+  <div class="next-container">
+    <h3>Best Items</h3> 
+    <div class="next-grid">
+      <div class="best"><div *ngFor="let category of categories" class="popular" (click)="navigateToProductPage(category.category_id)">     
+        <img [src]="category.image" alt="{{ category.category_name }}">
+      <h2>{{ category.category_name }}</h2>   
+    </div>
+  </div>
+  </div>
+  </div>
+    
+
   <app-footer></app-footer>
 </body>
+

@@ -16,6 +16,7 @@ import { SignupComponent } from './layout/signup/signup.component';
 import { IndexComponent } from './layout/index/index.component';
 import { ProductComponent} from './layout/product/product.component';
 import { HeaderComponent } from './layout/header/header.component';
+// import { ScrollableComponent } from './layout/scroll/scroll.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ProductDetailComponent } from './layout/product-detail/product-detail.component';
 import { LightboxModule } from 'ngx-lightbox';
@@ -52,7 +53,9 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     MatButtonModule,
     MatIconModule,
     AppRoutingModule,
-    LightboxModule,RouterModule, NgxScrollTopModule
+    LightboxModule,
+    RouterModule, 
+    NgxScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -63,7 +63,7 @@ export class IndexComponent implements OnInit {
       }
     );
   }
-<<<<<<< HEAD
+
 
   onSearch(): void {
     if (this.searchQuery.trim() === '') {
@@ -75,7 +75,7 @@ export class IndexComponent implements OnInit {
       );
     }
   }
-=======
+
   
 
 // scrollRight(popularGrid: ElementRef) {
@@ -84,12 +84,8 @@ export class IndexComponent implements OnInit {
 
 
 
-<<<<<<< HEAD
-//   openSideBar() {
-//     this.isSidebarShowing = true;
->>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
-=======
->>>>>>> 0bccb8867e5bd2151781424126d2f448299adbfb
+
+
 
   navigateToProductPage(categoryId: number): void {
     if (categoryId === undefined || categoryId === null) {
@@ -100,13 +96,4 @@ export class IndexComponent implements OnInit {
       console.error('Navigation error:', error);
     });
   }
-<<<<<<< HEAD
-=======
-  
-// }  
-
-// function navigateToProductPage(categoryId: any, number: any) {
-//   throw new Error('Function not implemented.');
-// 
->>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
 }

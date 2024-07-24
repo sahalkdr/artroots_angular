@@ -23,7 +23,9 @@ import { LightboxModule } from 'ngx-lightbox';
 import { CartComponent } from './layout/cart/cart.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
-// import { AdminComponent } from './layout/admin/admin.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
  
  
 
@@ -38,23 +40,19 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     FooterComponent,
     ProductDetailComponent,
     CartComponent,
-<<<<<<< HEAD
     AdminComponent
-   
-=======
-    
-    // AdminComponent,
->>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
-     
   ],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     HttpClientModule,  
     MatDialogModule,
     FormsModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatCardModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,

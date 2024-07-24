@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
+
 import { Component, EventEmitter, OnInit, Output, } from '@angular/core';
->>>>>>> 4fa9ad1dfdd865293120a124fcad907f30ab09bb
+
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
